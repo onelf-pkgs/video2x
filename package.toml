@@ -1,0 +1,16 @@
+# Video2X for onelf: the video super resolution and frame interpolation
+# CLI packed as one file, carrying upstream's whole AppImage payload.
+#
+# The control repository, onelf-pkgs/.github, bumps the sources here when
+# upstream releases and resets `release` to 1. Raise `release` by hand
+# when the recipe changes and the sources do not.
+name = "video2x"
+release = 1
+arches = ["x86_64"]
+self-update = true
+
+[sources.video2x]
+version = "6.4.0"
+url = "https://github.com/k4yt3x/video2x/releases/download/{version}/Video2X-x86_64.AppImage"
+sha256 = "8238fc38325107f0a08a140d069baee3db80c5ac7470b0a516cc683183f5f92d"
+upstream = { github = "k4yt3x/video2x", tag = "^([0-9.]+)$" }

@@ -1,0 +1,26 @@
+# The onelf recipe for the assembled tree: build.sh copies this into
+# the tree root and exports what the ${...} placeholders name, which
+# onelf expands when it loads the recipe. Nothing here names this
+# machine or this architecture.
+#
+# Upstream's AppImage payload already carries every library the program
+# links against (the whole FFmpeg stack, ncnn, libplacebo and friends),
+# so the bundle keeps them in lib/ as they are; bundle-libs only adds
+# the glibc family from the build container, which is what lets the
+# packed file run on musl hosts and old glibc ones alike. The models
+# sit beside the binary in bin/ because the program searches its own
+# directory for them last, which a read-only tree satisfies.
+[package]
+name = "video2x"
+command = "bin/video2x"
+version = "${VIDEO2X_VERSION}"
+description = "A machine learning-based video super resolution and frame interpolation framework"
+license = "AGPL-3.0"
+homepage = "https://docs.video2x.org"
+working-dir = "inherit"
+exclude = ["onelf.toml"]
+
+[bundle]
+no-gtk = true
+no-wayland = true
+disable-rules = ["alsa", "x11"]
