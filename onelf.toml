@@ -24,3 +24,7 @@ exclude = ["onelf.toml"]
 no-gtk = true
 no-wayland = true
 disable-rules = ["alsa", "x11"]
+
+[compression]
+level = 22
+payload = "stipple"
